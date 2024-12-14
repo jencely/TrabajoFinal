@@ -2,6 +2,7 @@ import uuid
 from datetime import datetime
 import psycopg2
 from config import Config
+import requests
 
 def get_db_connection():
     return psycopg2.connect(
@@ -46,7 +47,7 @@ class Meme:
         conn = get_db_connection()
         cur = conn.cursor()
         
-        id = uuid.uuid4()
+        id = str(uuid.uuid4())  
         cargada = datetime.now()
         
         cur.execute('''
@@ -95,7 +96,7 @@ class Etiqueta:
         conn = get_db_connection()
         cur = conn.cursor()
         
-        id = uuid.uuid4()
+        id = str(uuid.uuid4())  
         
         cur.execute('''
             INSERT INTO etiquetas (id, meme_id, etiqueta, confianza)
